@@ -1,0 +1,7 @@
+{
+  "name": "JellyApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
