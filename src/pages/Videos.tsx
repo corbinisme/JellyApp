@@ -7,11 +7,18 @@ interface videoData {
   summary: string;
   url: string;
   downloads: string[];
+  id: string;
 }
 
 const Videos: React.FC = () => {
 
+  const [videoID, setVideoID] = useState<string>("");
   const [videos, setVideos] = useState<videoData[]>([]);
+
+  const handleVideoClick = (id: string) => {
+    console.log("Video clicked:", id);
+    setVideoID(id);
+  }
   useEffect(() => {
     document.title = "Jelly Videos";
     console.log("Fetching videos...");
@@ -35,7 +42,8 @@ const Videos: React.FC = () => {
             title: video.attributes.name,
             summary: video.attributes.field_summary,
             url: videoUrl,
-            downloads: []
+            downloads: [],
+            id: id
           }
         });
       });
@@ -65,38 +73,63 @@ const Videos: React.FC = () => {
       <IonContent fullscreen>
         <div className="ion-padding container">
           <div className="row">
-        {videos && videos.map((video: videoData, index: number) => {
 
-            
-            const youtubeEmbedRegex = /https:\/\/www\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/;
+            {videoID ==""? (   
+              <>
+              {videos && videos.map((video: videoData, index: number) => {
+const youtubeEmbedRegex = /https:\/\/www\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/;
             // extract the video ID from the URL
             const match = video.url.match(youtubeEmbedRegex)
             const youtubeEmbedUrl = video.url.replace(youtubeEmbedRegex, 'https://www.youtube.com/embed/$1')
             console.log("Video URL:", youtubeEmbedUrl, video);
-          return (
+            const image = video.url.replace(youtubeEmbedRegex, 'https://i.ytimg.com/vi/$1/maxresdefault.jpg')
+            //const image = `https://i.ytimg.com/vi/tIqGddvWspU/maxresdefault.jpg`   
+            return (
 
 
           <div key={index} className="video-item mb-4 col-lg-6 col-lg-4">
             <div className="card">
-            <div className="card-header">
-                <h3 className="m-0">{video.title}</h3>
+            <div className="card-header bg-primary text-white">
+                <h3 className="m-0" onClick={()=>handleVideoClick(video.id)}>{video.title}</h3>
             </div>
             <p>{video.summary}</p>
-            <iframe
-              width="560"
-              className="iframe-responsive"
-              height="315"
-              src={youtubeEmbedUrl}
-              title={video.title}
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
+            <img src={image} alt={video.title} className="video-thumbnail" />
             </div>
           </div>
-          
+           
+              )
+              })}
+              </> 
+            ) : (
+          <div className="col-12">
+            
+            {videos && videos.filter((video: videoData) => video.id === videoID).map((video: videoData, index: number) => {
+              const youtubeEmbedRegex = /https:\/\/www\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/;
+              // extract the video ID from the URL
+              const match = video.url.match(youtubeEmbedRegex)
+              const youtubeEmbedUrl = video.url.replace(youtubeEmbedRegex, 'https://www.youtube.com/embed/$1')
+              console.log("Video individual:", youtubeEmbedUrl, video);
+
+              return (
+                <div>
+                  <button className="btn btn-secondary" onClick={() => setVideoID("")}>Back to Videos</button>
+                  <h3 className="heading bg-primary text-white p-3">{video.title}</h3>
+                  <p>{video.summary}</p>
+                    <iframe
+                      width="560"
+                      className="iframe-responsive"
+                      height="315"
+                      src={youtubeEmbedUrl}
+                      title={video.title}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                </div>
+              )
+            })}
+          </div>
         )
-        })
         }
         </div>
         </div>
