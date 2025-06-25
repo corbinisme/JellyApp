@@ -30,3 +30,24 @@ border-style: solid !important;
     height: 50px;
     width:auto;
 }
+
+@media all and (min-width: 768px) {
+    .layoutWrapper {
+      display:flex;
+      flex-wrap: wrap;
+      max-width: 700px;
+
+    }
+    .layoutWrapper .draggableArea  {
+        flex: 1 100%;
+        order: 1;
+    }
+    .layoutWrapper .bg-success {
+        order: 2;
+        flex: 1 50%;
+    }
+    .layoutWrapper .bg-danger {
+        order: 3;
+        flex: 1 50%;
+    }
+}

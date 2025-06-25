@@ -281,7 +281,7 @@ const [animals, setAnimals] = useState<Animal[]>(animalsData); // Type useState 
       <IonContent >
         <div
       ref={gameAreaRef} // Attach ref for global touch events
-      className="d-flex flex-column align-items-center justify-content-center p-4 bg-light min-vh-100 position-relative overflow-hidden" // Bootstrap classes
+      className="d-flex flex-column align-items-center justify-content-center  bg-light min-vh-100 position-relative overflow-hidden" // Bootstrap classes
     >
      
 
@@ -293,12 +293,32 @@ const [animals, setAnimals] = useState<Animal[]>(animalsData); // Type useState 
           className="btn btn-sm ms-3 btn-secondary m-0 rounded-pill shadow-lg" // Bootstrap classes
           >Reset</button>
       </h3>
-       
 
+      <div className="layoutWrapper">
+       
+      <div
+          ref={plateRef} // Attach ref
+          className="flex-grow-1 bg-success p-2 mb-5 rounded shadow-lg d-flex flex-column align-items-center justify-content-center border border-dashed border-white drop-zone-hover" // Bootstrap classes
+          onDragOver={handleDragOver}
+          onDrop={handleDropPlate}
+          style={{ minHeight: '180px' }}
+        >
+          {/* Dinner plate icon/image (using simple text for now) */}
+          <span style={{ fontSize: '4rem' }} className="mb-2" role="img" aria-label="dinner plate">🍽️</span> {/* Inline style for emoji size */}
+          <p className="fs-3 fw-semibold text-white text-shadow">Dinner Plate</p> {/* Bootstrap classes */}
+          <p className="small text-white opacity-75 mt-1">(Drag Edible Animals Here)</p> {/* Bootstrap classes */}
+          <div className="d-flex flex-wrap justify-content-center gap-2 mt-3"> {/* Bootstrap classes */}
+            {plateAnimals.map(animal => (
+              <span key={`plate-${animal.id}`} className="p-1 rounded bg-success-subtle" style={{ fontSize: '1.8rem' }}> {/* Bootstrap classes with inline style */}
+                {animal.emoji}
+              </span>
+            ))}
+          </div>
+        </div>
    
 
       {/* Draggable Animals Container */}
-      <div className="d-flex flex-wrap justify-content-center draggableArea gap-3 mb-5 p-4 bg-white rounded shadow-lg w-100" style={{ maxWidth: '700px', minHeight: '120px' }}> {/* Bootstrap classes with inline styles */}
+      <div className="d-flex flex-wrap justify-content-center draggableArea gap-3 mb-5 p-4 bg-white rounded shadow-lg w-100" style={{ minHeight: '120px' }}> {/* Bootstrap classes with inline styles */}
         {animals.length > 0 ? (
           // Sort animals alphabetically by name for consistent display
           [...animals].sort((a, b) => a.name.localeCompare(b.name)).map(animal => (
@@ -326,33 +346,14 @@ const [animals, setAnimals] = useState<Animal[]>(animalsData); // Type useState 
         )}
       </div>
 
-      {/* Drop Targets Container */}
-      <div className="d-flex flex-column flex-md-row justify-content-center gap-4 w-100" style={{ maxWidth: '700px' }}> {/* Bootstrap classes with inline style */}
+      
         {/* Dinner Plate Drop Zone */}
-        <div
-          ref={plateRef} // Attach ref
-          className="flex-grow-1 bg-success p-5 rounded shadow-lg d-flex flex-column align-items-center justify-content-center border border-dashed border-white drop-zone-hover" // Bootstrap classes
-          onDragOver={handleDragOver}
-          onDrop={handleDropPlate}
-          style={{ minHeight: '180px' }}
-        >
-          {/* Dinner plate icon/image (using simple text for now) */}
-          <span style={{ fontSize: '4rem' }} className="mb-2" role="img" aria-label="dinner plate">🍽️</span> {/* Inline style for emoji size */}
-          <p className="fs-3 fw-semibold text-white text-shadow">Dinner Plate</p> {/* Bootstrap classes */}
-          <p className="small text-white opacity-75 mt-1">(Drag Edible Animals Here)</p> {/* Bootstrap classes */}
-          <div className="d-flex flex-wrap justify-content-center gap-2 mt-3"> {/* Bootstrap classes */}
-            {plateAnimals.map(animal => (
-              <span key={`plate-${animal.id}`} className="p-1 rounded bg-success-subtle" style={{ fontSize: '1.8rem' }}> {/* Bootstrap classes with inline style */}
-                {animal.emoji}
-              </span>
-            ))}
-          </div>
-        </div>
+        
 
         {/* Trash Can Drop Zone */}
         <div
           ref={trashRef} // Attach ref
-          className="flex-grow-1 bg-danger p-5 rounded shadow-lg d-flex flex-column align-items-center justify-content-center border border-dashed border-white drop-zone-hover" // Bootstrap classes
+          className="flex-grow-1 bg-danger p-2 mb-5 rounded shadow-lg d-flex flex-column align-items-center justify-content-center border border-dashed border-white drop-zone-hover" // Bootstrap classes
           onDragOver={handleDragOver}
           onDrop={handleDropTrash}
           style={{ minHeight: '180px' }}

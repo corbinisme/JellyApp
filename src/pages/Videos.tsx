@@ -6,6 +6,7 @@ interface videoData {
   title: string;
   summary: string;
   url: string;
+  downloads: string[];
 }
 
 const Videos: React.FC = () => {
@@ -15,7 +16,7 @@ const Videos: React.FC = () => {
     document.title = "Jelly Videos";
     console.log("Fetching videos...");
     let videoUrls: Record<string, videoData> = {}; 
-    fetch('https://cas-development.ucg.org/jsonapi/views/kids/block_1?include=field_video')
+    fetch('https://cas-development.ucg.org/jsonapi/node/media_production?filter[field_ref_publication.drupal_internal__tid]=280&include=field_video')
     .then(response => response.json())
     .then(data => {
       console.log('Videos fetched successfully:', data);
@@ -25,10 +26,16 @@ const Videos: React.FC = () => {
         data.included.filter((video: any) => video.id === id).forEach((video: any) => {
           console.log("this is",video);
           const videoUrl = video.attributes.field_media_oembed_video;
+          
+          const originalVideo = data.data.filter((item: any) => item.relationships.field_video.data.id === id)[0];
+          console.log("Original Video:", originalVideo);
+          const attachments = originalVideo.relationships.field_attachment?.data || [];
+          console.log("Attachments:", attachments);
           videoUrls[id] = {
             title: video.attributes.name,
             summary: video.attributes.field_summary,
-            url: videoUrl
+            url: videoUrl,
+            downloads: []
           }
         });
       });
@@ -69,7 +76,7 @@ const Videos: React.FC = () => {
           return (
 
 
-          <div key={index} className="video-item mb-4 col-md-6 col-lg-4">
+          <div key={index} className="video-item mb-4 col-lg-6 col-lg-4">
             <div className="card">
             <div className="card-header">
                 <h3 className="m-0">{video.title}</h3>
