@@ -1,0 +1,18 @@
+@import "tailwindcss";
+@theme {
+  /* Define custom colors */
+  --color-primary: 220 80% 50%; /* Using HSL for better reusability */
+  --color-secondary: 260 60% 70%;
+
+  /* Define custom breakpoints (renamed from 'screens' in v3) */
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1024px;
+}
+
+/* Example of a custom utility */
+@utility awesome-button {
+  @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;
+  &:hover {
+    @apply bg-blue-700;
+  }
+}

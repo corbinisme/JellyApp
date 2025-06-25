@@ -1,2 +1,17 @@
 /* For information on how to create your own theme, please see:
 http://ionicframework.com/docs/theming/ */
+:root {
+    --primary: #178ce0;
+    --secondary: #F9b718;
+    --ion-toolbar-color: #ffffff; /* Example: White text for all toolbars */
+}
+
+
+.text-primary {
+    color: var(--primary)!important;
+}   
+body {
+  /* Default header background */
+  --ion-toolbar-background: var(--primary); /* Applies to toolbars within headers and footers */
+  --ion-header-background: var(--primary); /* Specifically for the header background */
+}

@@ -1,6 +1,7 @@
 import { Redirect, Route } from 'react-router-dom';
 import {
   IonApp,
+  IonMenu,
   IonIcon,
   IonLabel,
   IonRouterOutlet,
@@ -10,10 +11,25 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
+import "./Global.css";
+
 import { ellipse, square, triangle } from 'ionicons/icons';
-import Tab1 from './pages/Tab1';
-import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
+import Trivia from './pages/Trivia';
+import Meats from './pages/Meats';
+import Coloring from './pages/Coloring';
+import Home from './pages/Home';
+import GlobalMenu from './components/GlobalMenu';
+import Videos from './pages/Videos';
+import Lessons from './pages/Lessons';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+/* Font Awesome imports */
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons'; // If you installed regular icons
+import { fab } from '@fortawesome/free-brands-svg-icons'; // If you installed brand icons
+
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -44,43 +60,46 @@ import '@ionic/react/css/palettes/dark.system.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import Crossword from './pages/Crossword';
 
 setupIonicReact();
 
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet>
-          <Route exact path="/tab1">
-            <Tab1 />
+      <GlobalMenu menuId="mainMenu" />
+        <IonRouterOutlet  id="main-content">
+          <Route exact path="/Trivia">
+            <Trivia />
           </Route>
-          <Route exact path="/tab2">
-            <Tab2 />
+           <Route exact path="/home">
+            <Home />
+           </Route>
+          <Route exact path="/Meats">
+            <Meats />
           </Route>
-          <Route path="/tab3">
-            <Tab3 />
+          <Route path="/Coloring">
+            <Coloring />
+          </Route>
+          <Route path="/crossword">
+            <Crossword />
+          </Route>
+          <Route path="/Videos">
+            <Videos />
+          </Route>
+          <Route path="/Lessons">
+            <Lessons />
           </Route>
           <Route exact path="/">
-            <Redirect to="/tab1" />
+            <Redirect to="/home" />
           </Route>
         </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
-            <IonIcon aria-hidden="true" icon={triangle} />
-            <IonLabel>Tab 1</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon aria-hidden="true" icon={ellipse} />
-            <IonLabel>Tab 2</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon aria-hidden="true" icon={square} />
-            <IonLabel>Tab 3</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
+        
+  
+     
+      
     </IonReactRouter>
+    
   </IonApp>
 );
 
