@@ -1,8 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Knewave&display=swap');
-
+:root {
+    --yellow: #fec641;
+}
 .iframe-responsive {
     width: 100%;
 }
+
 
 .big-button {
     width: 100%;
@@ -25,15 +28,18 @@
 .big-button:hover {
     background-color: #0056b3; /* Darker shade for hover effect */
     transform: scale(1.05);
-    transition: background-color 0.3s ease, transform 0.3s ease
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 .btn-tertiary {
-    background-color: yellow!important;
+    background-color: var(--yellow)!important;
     color: #333;
     font-weight: bold;
-    font-size: 1.6em;
+    font-size: 1.2em!important;
     display: block;
     width: 100%;
+}
+.big-button:hover .btn-tertiary {
+    color: #111;
 }
 
 
