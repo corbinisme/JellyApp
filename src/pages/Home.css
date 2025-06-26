@@ -1,0 +1,26 @@
+.heroTop {
+    background-color: var(--yellow);
+}
+.heroTop img {
+    max-width: 600px;
+    margin: auto;
+}
+
+.section::after {
+    content: "";
+    display: table;
+    clear: both;
+    
+    border: 5px solid var(--yellow);
+    width: 1px;
+    text-align: center;
+    height: 41px;
+    left: 50%;
+    position: relative;
+    transition: all 0.3s ease;
+    
+
+}
+.section:hover::after {
+    top: 7px;
+}
