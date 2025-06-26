@@ -14,6 +14,7 @@ import {
 
 
 import { homeOutline, informationCircleOutline, extensionPuzzle, videocamOutline, pencilOutline,
+  musicalNoteOutline,
     bookOutline, settingsOutline, fastFoodOutline } from 'ionicons/icons';
 
 interface GlobalMenuProps {
@@ -72,6 +73,12 @@ const GlobalMenu: React.FC<GlobalMenuProps> = ({ menuId }) => {
             <IonItem routerLink="/lessons" routerDirection="none">
               <IonIcon slot="start" icon={pencilOutline} />
               <IonLabel>Lessons</IonLabel>
+            </IonItem>
+          </IonMenuToggle>
+          <IonMenuToggle autoHide={false}>
+            <IonItem routerLink="/songs" routerDirection="none">
+              <IonIcon slot="start" icon={musicalNoteOutline} />
+              <IonLabel>Songs</IonLabel>
             </IonItem>
           </IonMenuToggle>
         </IonList>

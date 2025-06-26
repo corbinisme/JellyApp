@@ -21,6 +21,7 @@ import Home from './pages/Home';
 import GlobalMenu from './components/GlobalMenu';
 import Videos from './pages/Videos';
 import Lessons from './pages/Lessons';
+import Songs from './pages/Songs';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -89,6 +90,9 @@ const App: React.FC = () => (
           </Route>
           <Route path="/Lessons">
             <Lessons />
+          </Route>
+          <Route path="/Songs">
+            <Songs />
           </Route>
           <Route exact path="/">
             <Redirect to="/home" />
