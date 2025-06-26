@@ -24,3 +24,40 @@
 .section:hover::after {
     top: 7px;
 }
+
+
+.card-link {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            cursor: pointer;
+            text-decoration: none; /* Remove underline from links */
+            color: inherit; /* Inherit text color */
+        }
+        .card-link:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); /* Adjusted shadow for Bootstrap look */
+        }
+        .text-shadow-custom {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Custom gradient backgrounds for cards */
+        .gradient-pink-purple {
+            background: linear-gradient(to bottom right, #f472b6, #8b5cf6); /* from-pink-400 to-purple-500 */
+        }
+        .gradient-green-blue {
+            background: linear-gradient(to bottom right, #4ade80, #3b82f6); /* from-green-400 to-blue-500 */
+        }
+        .gradient-yellow-orange {
+            background: linear-gradient(to bottom right, #facc15, #f97316); /* from-yellow-400 to-orange-500 */
+        }
+
+        /* Responsive text sizing for emoji and headers using Bootstrap's approach */
+        .emoji-icon {
+            font-size: 4rem; /* Default for sm */
+        }
+        @media (min-width: 576px) { /* sm breakpoint */
+            .emoji-icon { font-size: 5rem; }
+        }
+        @media (min-width: 768px) { /* md breakpoint */
+            .emoji-icon { font-size: 6rem; }
+        }

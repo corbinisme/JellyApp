@@ -84,9 +84,49 @@ const section1Ref = useRef<HTMLDivElement>(null);
             <h1 className="text-center display-4 knewave-regular">Jelly Activities</h1>
             <p className="text-center">Explore a variety of fun and educational activities for kids!</p>
           </div>
-        <div className="container p-0">
+        <div className="container ">
+
+
+          
+           
+           
+          <div className="row mt-5">
+            <div className="col-12 col-md-4 mb-4">
+                <a href="#coloring-books" className="card-link d-block p-4 rounded-4 shadow-lg
+                                                  gradient-pink-purple text-white
+                                                  d-flex flex-column align-items-center justify-content-center">
+                    <div className="emoji-icon mb-3 mb-md-4">🎨</div> 
+                    <h2 className="h3 fw-bold text-shadow-custom mb-2">Coloring Books</h2>
+                    <p className="fs-6 opacity-75">Unleash your creativity!</p>
+                </a>
+            </div>
+
+    
+            <div className="col-12 col-md-4  mb-4">
+                <a href="#bible-trivia" className="card-link d-block p-4 rounded-4 shadow-lg
+                                               gradient-green-blue text-white
+                                               d-flex flex-column align-items-center justify-content-center">
+                    <div className="emoji-icon mb-3 mb-md-4">🧠</div> 
+                    <h2 className="h3 fw-bold text-shadow-custom mb-2">Bible Trivia</h2>
+                    <p className="fs-6 opacity-75">Test your knowledge!</p>
+                </a>
+            </div>
+            
+
+       
+            <div className="col-12 col-md-4  mb-4">
+                <a href="#crossword-puzzles" className="card-link d-block p-4 rounded-4 shadow-lg
+                                                   gradient-yellow-orange text-white
+                                                   d-flex flex-column align-items-center justify-content-center">
+                    <div className="emoji-icon mb-3 mb-md-4">🧩</div> 
+                    <h2 className="h3 fw-bold text-shadow-custom mb-2">Crossword Puzzles</h2>
+                    <p className="fs-6 opacity-75">Word fun for everyone!</p>
+                </a>
+            </div>
+      </div>
+
         
-        <div className="rows"  style={{ position: 'relative', overflow: 'hidden', border: '1px dashed grey', padding: '20px' }}>
+        <div className="rows hidden"  style={{ display: 'none', position: 'relative', overflow: 'hidden', border: '1px dashed grey', padding: '20px' }}>
           <div className="mb-3 section" ref={section1Ref}>
             <div className="big-button">
               <div className="text-center card-header">
